@@ -3,11 +3,12 @@
 
 /**
  * variable_replacement - Handles variable replacement.
- * @line: A double pointer containing the command and arguments.
- * @exe_ret: A pointer to the return value of the last executed command.
+ *
+ * @line: double pointer containing the command & arguments.
+ * @exe_ret: pointer to the return value o last executed command.
  *
  * Description: Replaces $$ with the current PID, $? with the return value
- *              of the last executed program, and envrionmental variables
+ *              o last executed program, and envrionmental variables
  *              preceded by $ with their corresponding value.
  */
 void variable_replacement(char **line, int *exe_ret)
@@ -64,9 +65,10 @@ void variable_replacement(char **line, int *exe_ret)
 
 /**
  * token_len - Locates the delimiter index marking the end
- *             of the first token contained within a string.
- * @str: The string to be searched.
- * @delim: The delimiter character.
+ *             o 1st token contained within a string.
+ *
+ * @str:  string 2searched.
+ * @delim:   delimiter character.
  *
  * Return: The delimiter index marking the end of
  *         the intitial token pointed to be str.
@@ -87,8 +89,9 @@ int token_len(char *str, char *delim)
 /**
  * count_tokens - Counts the number of delimited
  *                words contained within a string.
- * @str: The string to be searched.
- * @delim: The delimiter character.
+ *
+ * @str:  string 2 searched.
+ * @delim: delimiter character.
  *
  * Return: The number of words contained within str.
  */
@@ -115,8 +118,7 @@ int count_tokens(char *str, char *delim)
 /**
  * _copyenv - Creates a copy of the environment.
  *
- * Return: If an error occurs - NULL.
- *         O/w - a double pointer to the new copy.
+ * Return: f err occurs(NULL), O/w (double pointer 2 n.cpy.)
  */
 char **_copyenv(void)
 {
@@ -153,9 +155,10 @@ char **_copyenv(void)
 /**
  * replace_aliases - Goes through the arguments and replace any matching alias
  * with their value.
- * @args: 2D pointer to the arguments.
  *
- * Return: 2D pointer to the arguments.
+ * @args: 2D pointer 2 arguments.
+ *
+ * Return: 2D pointer 2 arguments.
  */
 char **replace_aliases(char **args)
 {

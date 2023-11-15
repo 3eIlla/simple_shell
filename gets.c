@@ -2,11 +2,11 @@
 
 
 /**
- * get_location - Locates a command in the PATH.
+ * get_location - Locates a command n PATH.
  *
- * @command: The command to locate.
+ * @command:  command 2 locate.
  *
- * Return: If an error occurs or the command cannot be located - NULL.
+ * Return: f an error occurs or the command cannot be located - NULL.
  *         Otherwise - the full pathname of the command.
  */
 char *get_location(char *command)
@@ -51,9 +51,9 @@ char *get_location(char *command)
  * get_path_dir - Tokenizes a colon-separated list of
  *                directories into a list_s linked list.
  *
- * @path: The colon-separated list of directories.
+ * @path: colon-separated list of directories.
  *
- * Return: A pointer to the initialized linked list.
+ * Return:  pointer 2 initialized linked list.
  */
 list_t *get_path_dir(char *path)
 {
@@ -86,12 +86,12 @@ list_t *get_path_dir(char *path)
 
 
 /**
- * get_new_len - Gets the new length of a line partitioned
+ * get_new_len - Get  n.length of a line partitioned
  *               by ";", "||", "&&&", or "#".
  *
- * @line: The line to check.
+ * @line: line 2 check.
  *
- * Return: The new length of the line.
+ * Return:  n.length of the line.
  *
  * Description: Cuts short lines containing '#' comments with '\0'.
  */
@@ -150,12 +150,13 @@ ssize_t get_new_len(char *line)
 
 /**
  * get_pid - Gets the current process ID.
+ *
  * Description: Opens the stat file, a space-delimited file containing
  *              information about the current process. The PID is the
  *              first word in the file. The function reads the PID into
  *              a buffer and replace the space at the end with a \0 byte.
  *
- * Return: The current process ID or NULL on failure.
+ * Return:  current process ID, (NULL) on failure.
  */
 char *get_pid(void)
 {
@@ -185,15 +186,15 @@ char *get_pid(void)
 }
 
 /**
- * get_env_value - Gets the value corresponding to an environmental variable.
+ * get_env_value - Gets the value corresponding 2 environmental variable.
  *
- * @beginning: The environmental variable to search for.
- * @len: The length of the environmental variable to search for.
+ * @beginning:  environ variable 4 search for.
+ * @len: environ length  variable 2 search for.
  *
- * Return: If the variable is not found - an empty string.
- *         Otherwise - the value of the environmental variable.
+ * Return: f variable s not found (empty string).
+ *         Otherwise  (value of the environmental variable).
  *
- * Description: Variables are stored in the format VARIABLE=VALUE.
+ * Description: Variables r stored in the format VARIABLE=VALUE.
  */
 char *get_env_value(char *beginning, int len)
 {

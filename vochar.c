@@ -3,17 +3,20 @@
 
 
 /**
- * _strtok - Tokenizes a string.
+ * _strtok - Tokens str.
  *
- * @line: The string.
- * @delim: The delimiter character to tokenize the string by.
+ * @line: str.
+ * @delim: delimiter char 2 tokenizez str.by
  *
- * Return: A pointer to an array containing the tokenized words.
+ * Return: pont 2 array containing z tokens words.
  */
 char **_strtok(char *line, char *delim)
 {
 	char **ptr;
-	int index = 0, tokens, t, letters, l;
+
+	int index = 0;
+	int tokens, ts;
+	int letters, ls;
 
 	tokens = count_tokens(line, delim);
 	if (tokens == 0)
@@ -23,15 +26,15 @@ char **_strtok(char *line, char *delim)
 	if (!ptr)
 		return (NULL);
 
-	for (t = 0; t < tokens; t++)
+	for (ts = 0; ts < tokens; ts++)
 	{
 		while (line[index] == *delim)
-			index++;
+			index += 1;
 
 		letters = token_len(line + index, delim);
 
-		ptr[t] = malloc(sizeof(char) * (letters + 1));
-		if (!ptr[t])
+		ptr[ts] = malloc(sizeof(char) * (letters + 1));
+		if (!ptr[ts])
 		{
 			for (index -= 1; index >= 0; index--)
 				free(ptr[index]);
@@ -39,33 +42,35 @@ char **_strtok(char *line, char *delim)
 			return (NULL);
 		}
 
-		for (l = 0; l < letters; l++)
+		for (ls = 0; ls < letters; ls++)
 		{
-			ptr[t][l] = line[index];
-			index++;
+			ptr[ts][ls] = line[index];
+			index += 1;
 		}
 
-		ptr[t][l] = '\0';
+		ptr[ts][ls] = '\0';
 	}
-	ptr[t] = NULL;
-	ptr[t + 1] = NULL;
+	ptr[ts] = NULL;
+	ptr[ts + 1] = NULL;
 
 	return (ptr);
 }
 
 
 /**
- * fill_path_dir - Copies path but also replaces leading/sandwiched/trailing
- *		   colons (:) with current working directory.
-
+ * fill_path_dir - Copies path but
+ * &replaces leading/sandwiched/trailing colons (:)
+ *  w current working directory.
+ *
  * @path: The colon-separated list of directories.
  *
- * Return: A copy of path with any leading/sandwiched/trailing colons replaced
- *	   with the current working directory.
+ * Return: path cpy w any leading/sandwiched/trailing colons
+ *  & replaced w z current working directory.
  */
 char *fill_path_dir(char *path)
 {
-	int i, length = 0;
+	int i;
+	int length = 0;
 	char *path_copy, *pwd;
 
 	pwd = *(_getenv("PWD")) + 4;
@@ -76,13 +81,13 @@ char *fill_path_dir(char *path)
 			if (path[i + 1] == ':' || i == 0 || path[i + 1] == '\0')
 				length += _strlen(pwd) + 1;
 			else
-				length++;
+				length += 1;
 		}
 		else
-			length++;
+			length += 1;
 	}
 	path_copy = malloc(sizeof(char) * (length + 1));
-	if (!path_copy)
+	while (!path_copy)
 		return (NULL);
 	path_copy[0] = '\0';
 	for (i = 0; path[i]; i++)
@@ -110,9 +115,9 @@ char *fill_path_dir(char *path)
 
 
 /**
- * logical_ops - Checks a line for logical operators "||" or "&&".
+ * logical_ops - Checks line 4 logical operators "||" or "&&".
  *
- * @line: A pointer to the character to check in the line.
+ * @line: pot 2 character 2 check n line.
  * @new_len: Pointer to new_len in get_new_len function.
  */
 void logical_ops(char *line, ssize_t *new_len)
@@ -123,18 +128,18 @@ void logical_ops(char *line, ssize_t *new_len)
 	current = *line;
 	next = *(line + 1);
 
-	if (current == '&')
+	while (current == '&')
 	{
 		if (next == '&' && previous != ' ')
-			(*new_len)++;
+			(*new_len) += 1;
 		else if (previous == '&' && next != ' ')
 			(*new_len)++;
 	}
-	else if (current == '|')
+	if (current == '|')
 	{
 		if (next == '|' && previous != ' ')
-			(*new_len)++;
+			(*new_len) += 1;
 		else if (previous == '|' && next != ' ')
-			(*new_len)++;
+			(*new_len) += 1;
 	}
 }
