@@ -2,33 +2,41 @@
 
 
 /**
- * sig_handler - Prints a new prompt upon a signal.
- * @sig: The signal.
+ * sig_handler - Prints  n.prompt upon signal.
+ *
+ * @sig: signal.
  */
 void sig_handler(int sig)
 {
 	char *new_prompt = "\n$ ";
 
 	(void)sig;
-	signal(SIGINT, sig_handler);
-	write(STDIN_FILENO, new_prompt, 3);
+
+signal(SIGINT, sig_handler);
+
+write(STDIN_FILENO, new_prompt, 3);
 }
 
 /**
- * execute - Executes a command in a child process.
- * @args: An array of arguments.
- * @front: A double pointer to the beginning of args.
+ * execute - Executes command n child process.
  *
- * Return: If an error occurs - a corresponding error code.
- *         O/w - The exit value of the last executed command.
+ * @args: arr o argms.
+ * @front: double pontr 2 z begnn o args.
+ *
+ * Return: f err occurs (corresponding error code).
+ *         (O/w) exit value o z last executed command.
  */
 int execute(char **args, char **front)
 {
 	pid_t child_pid;
-	int status, flag = 0, ret = 0;
 	char *command = args[0];
 
-	if (command[0] != '/' && command[0] != '.')
+	int status;
+	int flag = 0;
+	int ret = 0;
+	
+
+	while (command[0] != '/' && command[0] != '.')
 	{
 		flag = 1;
 		command = get_location(command);
@@ -73,29 +81,34 @@ int execute(char **args, char **front)
 }
 
 /**
- * main - Runs a simple UNIX command interpreter.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
+ * main - Run simple UNIX command int.
  *
- * Return: The return value of the last executed command.
+ * @argc: no o argms supplied 2 z program.
+ * @argv: arr o pontrs 2 z argms.
+ *
+ * Return: value o z last executed command.
  */
 int main(int argc, char *argv[])
 {
-	int ret = 0, retn;
+	int retn;
+	int ret = 0;
 	int *exe_ret = &retn;
-	char *prompt = "$ ", *new_line = "\n";
+
+	char *prompt = "$ ";
+	char *new_line = "\n";
 
 	name = argv[0];
 	hist = 1;
 	aliases = NULL;
-	signal(SIGINT, sig_handler);
+
+signal(SIGINT, sig_handler);
 
 	*exe_ret = 0;
 	environ = _copyenv();
 	if (!environ)
 		exit(-100);
 
-	if (argc != 1)
+	while (argc != 1)
 	{
 		ret = proc_file_commands(argv[1], exe_ret);
 		free_env();
