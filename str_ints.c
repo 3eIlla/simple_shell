@@ -2,13 +2,12 @@
 
 
 
-
-
 /**
- * _strlen - Returns the length of a string.
- * @s: A pointer to the characters string.
+ * _strlen - Returns length o str.
  *
- * Return: The length of the character string.
+ * @s: pontr 2 z char str.
+ *
+ * Return: length o char str.
  */
 int _strlen(const char *s)
 {
@@ -24,11 +23,11 @@ int _strlen(const char *s)
 
 /**
  * _strspn - Gets the length of a prefix substring.
- * @s: The string to be searched.
- * @accept: The prefix to be measured.
  *
- * Return: The number of bytes in s which
- *         consist only of bytes from accept.
+ * @s: str 2 b searched.
+ * @accept: The prefix 2 b measured.
+ *
+ * Return: bytes no n s which consist only o bytes from accept.
  */
 int _strspn(char *s, char *accept)
 {
@@ -51,13 +50,14 @@ int _strspn(char *s, char *accept)
 }
 
 /**
- * _strcmp - Compares two strings.
- * @s1: The first string to be compared.
- * @s2: The second string to be compared.
+ * _strcmp - Compare 2 str.
  *
- * Return: Positive byte difference if s1 > s2
- *         0 if s1 = s2
- *         Negative byte difference if s1 < s2
+ * @s1: 1st str 2 b compared.
+ * @s2: 2nd str 2 b compared.
+ *
+ * Return: (Positive difference) f s1 > s2
+ *         (0) f s1 = s2
+ *         (Negative difference) f s1 < s2
  */
 int _strcmp(char *s1, char *s2)
 {
@@ -75,13 +75,14 @@ int _strcmp(char *s1, char *s2)
 
 /**
  * _strncmp - Compare two strings.
- * @s1: Pointer to a string.
- * @s2: Pointer to a string.
- * @n: The first n bytes of the strings to compare.
  *
- * Return: Less than 0 if s1 is shorter than s2.
- *         0 if s1 and s2 match.
- *         Greater than 0 if s1 is longer than s2.
+ * @s1: Pointer 2 str.
+ * @s2: Pointer 2 str.
+ * @n: 1st n bytes o str 2 compare.
+ *
+ * Return: (Less than 0) f s1 s shorter than s2.
+ *         (0) f s1 & s2 match.
+ *         (Greater than 0) f s1 s longer than s2.
  */
 int _strncmp(const char *s1, const char *s2, size_t n)
 {

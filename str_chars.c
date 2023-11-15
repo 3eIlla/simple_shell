@@ -1,14 +1,13 @@
 #include "shell.h"
 
 
-
 /**
- * _strchr - Locates a character in a string.
- * @s: The string to be searched.
- * @c: The character to be located.
+ * _strchr - Locate char n str.
  *
- * Return: If c is found - a pointer to the first occurence.
- *         If c is not found - NULL.
+ * @s: str 2 b searched.
+ * @c: char 2 b located.
+ *
+ * Return: (f c is found) pnter 2 1st occurence, (f c is not found) NULL.
  */
 char *_strchr(char *s, char c)
 {
@@ -25,12 +24,14 @@ char *_strchr(char *s, char c)
 
 
 /**
- * _strcpy - Copies the string pointed to by src, including the
- *           terminating null byte, to the buffer pointed by des.
- * @dest: Pointer to the destination of copied string.
- * @src: Pointer to the src of the source string.
+ * _strcpy - Copies the string pointed to by src, 
+ * including the terminating null byte, 
+ * to the buffer pointed by des.
  *
- * Return: Pointer to dest.
+ * @dest: Pntr 2 z destin o copied str.
+ * @src: Pntr 2 z src o z source str.
+ *
+ * Return: Pntr 2 dest.
  */
 char *_strcpy(char *dest, const char *src)
 {
@@ -43,11 +44,12 @@ char *_strcpy(char *dest, const char *src)
 }
 
 /**
- * _strcat - Concantenates two strings.
- * @dest: Pointer to destination string.
- * @src: Pointer to source string.
+ * _strcat - Concantenates 2 strings.
  *
- * Return: Pointer to destination string.
+ * @dest: Pntr 2 z destin o copied str.
+ * @src: Pntr 2 z src o z source str.
+ *
+ * Return: Pntr 2 dest.
  */
 char *_strcat(char *dest, const char *src)
 {
@@ -67,13 +69,13 @@ char *_strcat(char *dest, const char *src)
 }
 
 /**
- * _strncat - Concantenates two strings where n number
- *            of bytes are copied from source.
- * @dest: Pointer to destination string.
- * @src: Pointer to source string.
- * @n: n bytes to copy from src.
+ * _strncat - Concantenates 2 strs n no o bytes r cpy from source.
  *
- * Return: Pointer to destination string.
+ * @dest: Pntr 2 z destin o copied str.
+ * @src: Pntr 2 z src o z source str.
+ * @n: byts no 2 cpy from src.
+ *
+ * Return: Pntr 2 dest.
  */
 char *_strncat(char *dest, const char *src, size_t n)
 {
