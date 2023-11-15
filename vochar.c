@@ -4,6 +4,7 @@
 
 /**
  * _strtok - Tokenizes a string.
+ *
  * @line: The string.
  * @delim: The delimiter character to tokenize the string by.
  *
@@ -56,6 +57,7 @@ char **_strtok(char *line, char *delim)
 /**
  * fill_path_dir - Copies path but also replaces leading/sandwiched/trailing
  *		   colons (:) with current working directory.
+
  * @path: The colon-separated list of directories.
  *
  * Return: A copy of path with any leading/sandwiched/trailing colons replaced
@@ -109,6 +111,7 @@ char *fill_path_dir(char *path)
 
 /**
  * logical_ops - Checks a line for logical operators "||" or "&&".
+ *
  * @line: A pointer to the character to check in the line.
  * @new_len: Pointer to new_len in get_new_len function.
  */

@@ -24,8 +24,8 @@ char *_strchr(char *s, char c)
 
 
 /**
- * _strcpy - Copies the string pointed to by src, 
- * including the terminating null byte, 
+ * _strcpy - Copies the string pointed to by src,
+ * including the terminating null byte,
  * to the buffer pointed by des.
  *
  * @dest: Pntr 2 z destin o copied str.

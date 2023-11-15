@@ -3,14 +3,15 @@
 
 
 /**
- * free_alias_list - Frees a alias_t linked list.
- * @head: THe head of the alias_t list.
+ * free_alias_list - Free alias_t list.
+ *
+ * @head: head o list_t lst.
  */
 void free_alias_list(alias_t *head)
 {
 	alias_t *next;
 
-	while (head)
+	if (head)
 	{
 		next = head->next;
 		free(head->name);
@@ -21,14 +22,15 @@ void free_alias_list(alias_t *head)
 }
 
 /**
- * free_list - Frees a list_t linked list.
- * @head: The head of the list_t list.
+ * free_list - Free list_t lst.
+ *
+ * @head: head o list_t lst.
  */
 void free_list(list_t *head)
 {
 	list_t *next;
 
-	while (head)
+	if (head)
 	{
 		next = head->next;
 		free(head->dir);
@@ -39,29 +41,30 @@ void free_list(list_t *head)
 
 
 /**
- * free_args - Frees up memory taken by args.
- * @args: A null-terminated double pointer containing commands/arguments.
- * @front: A double pointer to the beginning of args.
+ * free_args - Free args memo .
+ *
+ * @args: null-termn double pontr contain commands/args.
+ * @front: double pontr 2 z bgnn o args.
  */
 void free_args(char **args, char **front)
 {
-	size_t i;
+	size_t lil;
 
-	for (i = 0; args[i] || args[i + 1]; i++)
-		free(args[i]);
+	for (lil = 0; args[lil] || args[lil + 1]; lil++)
+		free(args[lil]);
 
 	free(front);
 }
 
 
 /**
- * free_env - Frees the the environment copy.
+ * free_env - Free z environ cpy.
  */
 void free_env(void)
 {
-	int index;
+	int ndx;
 
-	for (index = 0; environ[index]; index++)
-		free(environ[index]);
+	for (ndx = 0; environ[ndx]; ndx++)
+		free(environ[ndx]);
 	free(environ);
 }

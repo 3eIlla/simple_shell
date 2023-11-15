@@ -3,24 +3,25 @@
 
 
 /**
- * add_alias_end - Adds a node to the end of a alias_t linked list.
+ * add_alias_end - Add n.node 2 end o alias_t linked list.
+ *
  * @head: A pointer to the head of the list_t list.
  * @name: The name of the new alias to be added.
  * @value: The value of the new alias to be added.
  *
- * Return: If an error occurs - NULL.
- *         Otherwise - a pointer to the new node.
+ * Return: f err occurs (NULL).
+ *         Otherwise (pointer 2 n.node).
  */
 alias_t *add_alias_end(alias_t **head, char *name, char *value)
 {
 	alias_t *new_node = malloc(sizeof(alias_t));
 	alias_t *last;
 
-	if (!new_node)
+	while (!new_node)
 		return (NULL);
-
 	new_node->next = NULL;
 	new_node->name = malloc(sizeof(char) * (_strlen(name) + 1));
+
 	if (!new_node->name)
 	{
 		free(new_node);
@@ -32,7 +33,7 @@ alias_t *add_alias_end(alias_t **head, char *name, char *value)
 	if (*head)
 	{
 		last = *head;
-		while (last->next != NULL)
+		if (last->next != NULL)
 			last = last->next;
 		last->next = new_node;
 	}
@@ -43,28 +44,28 @@ alias_t *add_alias_end(alias_t **head, char *name, char *value)
 }
 
 /**
- * add_node_end - Adds a node to the end of a list_t linked list.
- * @head: A pointer to the head of the list_t list.
- * @dir: The directory path for the new node to contain.
+ * add_node_end - Add n.node 2 end o list_t linked list.
  *
- * Return: If an error occurs - NULL.
- *         Otherwise - a pointer to the new node.
+ * @head: pointer 2 z head of z list_t list.
+ * @dir: directory path 4 n.node 2 contain.
+ *
+ * Return: f err occurs  (NULL).
+ *         Otherwise  (pointer 2 n.node).
  */
 list_t *add_node_end(list_t **head, char *dir)
 {
 	list_t *new_node = malloc(sizeof(list_t));
 	list_t *last;
 
-	if (!new_node)
+	while (!new_node)
 		return (NULL);
-
 	new_node->dir = dir;
 	new_node->next = NULL;
 
 	if (*head)
 	{
 		last = *head;
-		while (last->next != NULL)
+		if (last->next != NULL)
 			last = last->next;
 		last->next = new_node;
 	}
@@ -77,22 +78,23 @@ list_t *add_node_end(list_t **head, char *dir)
 
 /**
  * get_args - Gets a command from standard input.
- * @line: A buffer to store the command.
- * @exe_ret: The return value of the last executed command.
  *
- * Return: If an error occurs - NULL.
- *         Otherwise - a pointer to the stored command.
+ * @line: buffer 2 store z command.
+ * @exe_ret:  value o z last executed command.
+ *
+ * Return: If an error occurs  (NULL).
+ *         Otherwise  (pointer to the stored command).
  */
 char *get_args(char *line, int *exe_ret)
 {
-	size_t n = 0;
+	size_t nl = 0;
 	ssize_t read;
 	char *prompt = "$ ";
 
 	if (line)
 		free(line);
 
-	read = _getline(&line, &n, STDIN_FILENO);
+	read = _getline(&line, &nl, STDIN_FILENO);
 	if (read == -1)
 		return (NULL);
 	if (read == 1)
@@ -112,21 +114,22 @@ char *get_args(char *line, int *exe_ret)
 
 
 /**
- * _getenv - Gets an environmental variable from the PATH.
- * @var: The name of the environmental variable to get.
+ * _getenv - Get environ variable from PATH.
  *
- * Return: If the environmental variable does not exist - NULL.
- *         Otherwise - a pointer to the environmental variable.
+ * @var: name o  environ variable 2 get.
+ *
+ * Return:  (NULL) f environ variable doesn't exist .
+ *         Otherwise (pntr 2 environ variable).
  */
 char **_getenv(const char *var)
 {
-	int index, len;
+	int ndx, len;
 
 	len = _strlen(var);
-	for (index = 0; environ[index]; index++)
+	for (ndx = 0; environ[ndx]; ndx++)
 	{
-		if (_strncmp(var, environ[index], len) == 0)
-			return (&environ[index]);
+		if (_strncmp(var, environ[ndx], len) == 0)
+			return (&environ[ndx]);
 	}
 
 	return (NULL);

@@ -3,6 +3,7 @@
 
 /**
  * get_location - Locates a command in the PATH.
+ *
  * @command: The command to locate.
  *
  * Return: If an error occurs or the command cannot be located - NULL.
@@ -49,6 +50,7 @@ char *get_location(char *command)
 /**
  * get_path_dir - Tokenizes a colon-separated list of
  *                directories into a list_s linked list.
+ *
  * @path: The colon-separated list of directories.
  *
  * Return: A pointer to the initialized linked list.
@@ -86,6 +88,7 @@ list_t *get_path_dir(char *path)
 /**
  * get_new_len - Gets the new length of a line partitioned
  *               by ";", "||", "&&&", or "#".
+ *
  * @line: The line to check.
  *
  * Return: The new length of the line.
@@ -183,6 +186,7 @@ char *get_pid(void)
 
 /**
  * get_env_value - Gets the value corresponding to an environmental variable.
+ *
  * @beginning: The environmental variable to search for.
  * @len: The length of the environmental variable to search for.
  *
