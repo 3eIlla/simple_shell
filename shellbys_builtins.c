@@ -14,8 +14,7 @@
 void variable_replacement(char **line, int *exe_ret)
 {
 	int j, k = 0, len;
-	char *replacement = NULL;
-	char *old_line = NULL, *new_line;
+	char *replacement = NULL, *old_line = NULL, *new_line;
 
 	old_line = *line;
 	for (j = 0; old_line[j]; j++)
@@ -45,7 +44,7 @@ void variable_replacement(char **line, int *exe_ret)
 			}
 			new_line = malloc(j + _strlen(replacement)
 					  + _strlen(&old_line[k]) + 1);
-			while (!line)
+			if (!line)
 				return;
 			new_line[0] = '\0';
 			_strncat(new_line, old_line, j);
@@ -76,14 +75,14 @@ void variable_replacement(char **line, int *exe_ret)
  */
 int token_len(char *str, char *delim)
 {
-	int index = 0;
-	int len = 0;
+	int index = 0, len = 0;
 
 	while (*(str + index) && *(str + index) != *delim)
 	{
-		len = len + 1;
-		index += 1;
+		len++;
+		index++;
 	}
+
 	return (len);
 }
 
@@ -101,13 +100,13 @@ int count_tokens(char *str, char *delim)
 	int index, tokens = 0, len = 0;
 
 	for (index = 0; *(str + index); index++)
-		len += 1;
+		len++;
 
 	for (index = 0; index < len; index++)
 	{
-		while (*(str + index) != *delim)
+		if (*(str + index) != *delim)
 		{
-			tokens += 1;
+			tokens++;
 			index += token_len(str + index, delim);
 		}
 	}
@@ -131,14 +130,14 @@ char **_copyenv(void)
 		;
 
 	new_environ = malloc(sizeof(char *) * (size + 1));
-	while (!new_environ)
+	if (!new_environ)
 		return (NULL);
 
 	for (index = 0; environ[index]; index++)
 	{
 		new_environ[index] = malloc(_strlen(environ[index]) + 1);
 
-		while (!new_environ[index])
+		if (!new_environ[index])
 		{
 			for (index--; index >= 0; index--)
 				free(new_environ[index]);
@@ -167,7 +166,7 @@ char **replace_aliases(char **args)
 	int i;
 	char *new_value;
 
-	while (_strcmp(args[0], "alias") == 0)
+	if (_strcmp(args[0], "alias") == 0)
 		return (args);
 	for (i = 0; args[i]; i++)
 	{

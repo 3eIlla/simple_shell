@@ -88,7 +88,7 @@ void set_alias(char *var_name, char *value)
 }
 
 /**
- * print_alias - Print  alias n format name='value'.
+ * print_alias - Prints the alias in the format name='value'.
  *
  * @alias: Pointer 2 alias.
  */
@@ -98,7 +98,7 @@ void print_alias(alias_t *alias)
 	int len = _strlen(alias->name) + _strlen(alias->value) + 4;
 
 	alias_string = malloc(sizeof(char) * (len + 1));
-	while (!alias_string)
+	if (!alias_string)
 		return;
 	_strcpy(alias_string, alias->name);
 	_strcat(alias_string, "='");
@@ -155,13 +155,12 @@ int (*get_builtin(char *command))(char **args, char **front)
  */
 int shellby_exit(char **args, char **front)
 {
-	int i = 0;
-	int len_of_int = 10;
+	int i = 0, len_of_int = 10;
 	unsigned int num = 0, max = 1 << (sizeof(int) * 8 - 1);
 
 	if (args[0])
 	{
-		while (args[0][0] == '+')
+		if (args[0][0] == '+')
 		{
 			i = 1;
 			len_of_int++;
@@ -178,7 +177,7 @@ int shellby_exit(char **args, char **front)
 	{
 		return (-3);
 	}
-	while (num > max - 1)
+	if (num > max - 1)
 		return (create_error(--args, 2));
 	args -= 1;
 	free_args(args, front);

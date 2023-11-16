@@ -16,7 +16,7 @@ char *get_location(char *command)
 	struct stat st;
 
 	path = _getenv("PATH");
-	while (!path || !(*path))
+	if (!path || !(*path))
 		return (NULL);
 
 	dirs = get_path_dir(*path + 5);
@@ -48,27 +48,24 @@ char *get_location(char *command)
 }
 
 /**
- * get_path_dir - Tokenizes colon-separated list o
- *                directories into a list_s list.
+ * get_path_dir - Tokenizes a colon-separated list of
+ *                directories into a list_s linked list.
  *
- * @path: colon-separated list o directories.
+ * @path: colon-separated list of directories.
  *
- * Return:  pointer 2 initialized list.
+ * Return:  pointer 2 initialized linked list.
  */
 list_t *get_path_dir(char *path)
 {
 	int index;
-	char **dirs;
-	char *path_copy;
+	char **dirs, *path_copy;
 	list_t *head = NULL;
 
 	path_copy = fill_path_dir(path);
-	while (!path_copy)
+	if (!path_copy)
 		return (NULL);
-
 	dirs = _strtok(path_copy, ":");
 	free(path_copy);
-
 	if (!dirs)
 		return (NULL);
 
@@ -94,7 +91,7 @@ list_t *get_path_dir(char *path)
  *
  * @line: line 2 check.
  *
- * Return:  n.length o line.
+ * Return:  n.length of the line.
  *
  * Description: Cuts short lines containing '#' comments with '\0'.
  */
@@ -102,8 +99,7 @@ ssize_t get_new_len(char *line)
 {
 	size_t i;
 	ssize_t new_len = 0;
-	char current;
-	char next;
+	char current, next;
 
 	for (i = 0; line[i]; i++)
 	{
@@ -131,22 +127,22 @@ ssize_t get_new_len(char *line)
 					new_len += 2;
 					continue;
 				}
-				while (line[i - 1] != ' ')
-					new_len += 1;
-				while (next != ' ')
-					new_len += 1;
+				if (line[i - 1] != ' ')
+					new_len++;
+				if (next != ' ')
+					new_len++;
 			}
 			else
 				logical_ops(&line[i], &new_len);
 		}
 		else if (current == ';')
 		{
-			while (i != 0 && line[i - 1] != ' ')
-				new_len += 1;
-			while (next != ' ' && next != ';')
-				new_len += 1;
+			if (i != 0 && line[i - 1] != ' ')
+				new_len++;
+			if (next != ' ' && next != ';')
+				new_len++;
 		}
-		new_len += 1;
+		new_len++;
 	}
 	return (new_len);
 }
@@ -156,8 +152,8 @@ ssize_t get_new_len(char *line)
  * get_pid - Gets the current process ID.
  *
  * Description: Opens the stat file, a space-delimited file containing
- *              information about the current process.
- *  The PID is the first word in the file. The function reads the PID into
+ *              information about the current process. The PID is the
+ *              first word in the file. The function reads the PID into
  *              a buffer and replace the space at the end with a \0 byte.
  *
  * Return:  current process ID, (NULL) on failure.
@@ -175,7 +171,7 @@ char *get_pid(void)
 		return (NULL);
 	}
 	buffer = malloc(120);
-	while (!buffer)
+	if (!buffer)
 	{
 		close(file);
 		return (NULL);
@@ -190,7 +186,7 @@ char *get_pid(void)
 }
 
 /**
- * get_env_value - Get value corresponding 2 environmental variable.
+ * get_env_value - Gets the value corresponding 2 environmental variable.
  *
  * @beginning:  environ variable 4 search for.
  * @len: environ length  variable 2 search for.
@@ -213,10 +209,10 @@ char *get_env_value(char *beginning, int len)
 
 	var_addr = _getenv(var);
 	free(var);
-	while (var_addr)
+	if (var_addr)
 	{
 		temp = *var_addr;
-		if (*temp != '=')
+		while (*temp != '=')
 			temp++;
 		temp++;
 		replacement = malloc(_strlen(temp) + 1);

@@ -12,12 +12,11 @@
  */
 int cant_open(char *file_path)
 {
+	char *error, *hist_str;
 	int len;
-	char *error;
-	char *hist_str;
 
 	hist_str = _itoa(hist);
-	while (!hist_str)
+	if (!hist_str)
 		return (127);
 
 	len = _strlen(name) + _strlen(hist_str) + _strlen(file_path) + 16;
@@ -59,7 +58,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	char *ptr_copy, *filler;
 	unsigned int index;
 
-	while (new_size == old_size)
+	if (new_size == old_size)
 		return (ptr);
 
 	if (ptr == NULL)
@@ -71,7 +70,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (mem);
 	}
 
-	while (new_size == 0 && ptr != NULL)
+	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
 		return (NULL);
@@ -162,9 +161,9 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 			free(buffer);
 			return (-1);
 		}
-		while (r == 0 && input != 0)
+		if (r == 0 && input != 0)
 		{
-			input += 1;
+			input++;
 			break;
 		}
 
@@ -178,7 +177,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 	assign_lineptr(lineptr, n, buffer, input);
 
 	ret = input;
-	while (r != 0)
+	if (r != 0)
 		input = 0;
 	return (ret);
 }
