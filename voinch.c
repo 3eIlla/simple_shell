@@ -1,27 +1,24 @@
 #include "shell.h"
 
 /**
- * handle_line - Partitions line 2 read from standard input as needed.
+ * handle_line - Partitions a line read from standard input as needed.
+ * @line: A pointer to a line read from standard input.
+ * @read: The length of line.
  *
- * @line: pntr 2 line read from standard input.
- * @read: line length.
- *
- * Description: Spaces r inserted 2 separate ";", "||", and "&&".
+ * Description: Spaces are inserted to separate ";", "||", and "&&".
  *              Replaces "#" with '\0'.
  */
 void handle_line(char **line, ssize_t read)
 {
-	char *old_line, *new_line;
-	char previous, current, next;
-
+	char *old_line, *new_line, previous, current, next;
 	size_t i, j;
 	ssize_t new_len;
 
 	new_len = get_new_len(*line);
-	while (new_len == read - 1)
+	if (new_len == read - 1)
 		return;
 	new_line = malloc(new_len + 1);
-	while (!new_line)
+	if (!new_line)
 		return;
 	j = 0;
 	old_line = *line;
@@ -78,10 +75,10 @@ void handle_line(char **line, ssize_t read)
 		}
 		else if (current == ';')
 		{
-			while (i != 0 && old_line[i - 1] != ' ')
+			if (i != 0 && old_line[i - 1] != ' ')
 				new_line[j++] = ' ';
 			new_line[j++] = ';';
-			while (next != ' ' && next != ';')
+			if (next != ' ' && next != ';')
 				new_line[j++] = ' ';
 			continue;
 		}
@@ -95,30 +92,27 @@ void handle_line(char **line, ssize_t read)
 
 
 /**
- * proc_file_commands - Take file,attempts 2 run z commands stored within.
+ * proc_file_commands - Takes a file and attempts to run the commands stored
+ * within.
+ * @file_path: Path to the file.
+ * @exe_ret: Return value of the last executed command.
  *
- * @file_path: Path 2 file.
- * @exe_ret:  last executed command value.
- *
- * Return: f file couldn't be opened  (127).
- * f malloc fails (-1).
- *		   Otherwise (value of the last command ran.)
+ * Return: If file couldn't be opened - 127.
+ *	   If malloc fails - -1.
+ *	   Otherwise the return value of the last command ran.
  */
 int proc_file_commands(char *file_path, int *exe_ret)
 {
-	int ret;
-
-	char *line, **args, **front;
-	char buffer[120];
-
+	ssize_t file, b_read, i;
 	unsigned int line_size = 0;
 	unsigned int old_size = 120;
-
-	ssize_t file, b_read, i;
+	char *line, **args, **front;
+	char buffer[120];
+	int ret;
 
 	hist = 0;
 	file = open(file_path, O_RDONLY);
-	while (file == -1)
+	if (file == -1)
 	{
 		*exe_ret = cant_open(file_path);
 		return (*exe_ret);
@@ -151,7 +145,7 @@ int proc_file_commands(char *file_path, int *exe_ret)
 	handle_line(&line, line_size);
 	args = _strtok(line, " ");
 	free(line);
-	while (!args)
+	if (!args)
 		return (0);
 	if (check_args(args) != 0)
 	{

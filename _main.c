@@ -34,6 +34,7 @@ int execute(char **args, char **front)
 	int status;
 	int flag = 0;
 	int ret = 0;
+	
 
 	while (command[0] != '/' && command[0] != '.')
 	{
