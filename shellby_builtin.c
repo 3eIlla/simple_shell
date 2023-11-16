@@ -4,12 +4,12 @@
 
 /**
  * shellby_cd - Changes the current directory of the shellby process.
+ * @args: An array of arguments.
+ * @front: A double pointer to the beginning of args.
  *
- * @args: array of arguments.
- * @front: double pointer to the beginning of args.
- *
- * Return: f the given string is not a directory - 2.
- *   (-1) f an error occurs , (0) Otherwise .
+ * Return: If the given string is not a directory - 2.
+ *         If an error occurs - -1.
+ *         Otherwise - 0.
  */
 int shellby_cd(char **args, char __attribute__((__unused__)) **front)
 {
@@ -85,11 +85,11 @@ int shellby_cd(char **args, char __attribute__((__unused__)) **front)
 
 /**
  * shellby_help - Displays information about shellby builtin commands.
+ * @args: An array of arguments.
+ * @front: A pointer to the beginning of args.
  *
- * @args: array of arguments.
- * @front:  pointer to the beginning of args.
- *
- * Return: (-1) f an error occurs , (0) Otherwise .
+ * Return: If an error occurs - -1.
+ *         Otherwise - 0.
  */
 int shellby_help(char **args, char __attribute__((__unused__)) **front)
 {
@@ -118,11 +118,11 @@ int shellby_help(char **args, char __attribute__((__unused__)) **front)
 
 /**
  * shellby_env - Prints the current environment.
+ * @args: An array of arguments passed to the shell.
+ * @front: A double pointer to the beginning of args.
  *
- * @args: array of arguments passed to the shell.
- * @front: double pointer to the beginning of args.
- *
- * Return: (-1) f an error occurs , (0) Otherwise .
+ * Return: If an error occurs - -1.
+ *	   Otherwise - 0.
  *
  * Description: Prints one variable per line in the
  *              format 'variable'='value'.
@@ -147,14 +147,13 @@ int shellby_env(char **args, char __attribute__((__unused__)) **front)
 
 /**
  * shellby_setenv - Changes or adds an environmental variable to the PATH.
- *
- * @args: array of arguments passed to the shell.
- * @front: double pointer to the beginning of args.
- *
+ * @args: An array of arguments passed to the shell.
+ * @front: A double pointer to the beginning of args.
  * Description: args[1] is the name of the new or existing PATH variable.
  *              args[2] is the value to set the new or changed variable to.
  *
- * Return: (-1) f an error occurs , (0) Otherwise .
+ * Return: If an error occurs - -1.
+ *         Otherwise - 0.
  */
 int shellby_setenv(char **args, char __attribute__((__unused__)) **front)
 {
@@ -202,13 +201,12 @@ int shellby_setenv(char **args, char __attribute__((__unused__)) **front)
 
 /**
  * shellby_unsetenv - Deletes an environmental variable from the PATH.
- *
- * @args: array of arguments passed to the shell.
- * @front: double pointer to the beginning of args.
- *
+ * @args: An array of arguments passed to the shell.
+ * @front: A double pointer to the beginning of args.
  * Description: args[1] is the PATH variable to remove.
  *
- * Return: (-1) f an error occurs , (0) Otherwise .
+ * Return: If an error occurs - -1.
+ *         Otherwise - 0.
  */
 int shellby_unsetenv(char **args, char __attribute__((__unused__)) **front)
 {

@@ -1,13 +1,17 @@
 #include "shell.h"
 
+int shellby_alias(char **args, char __attribute__((__unused__)) **front);
+void set_alias(char *var_name, char *value);
+void print_alias(alias_t *alias);
+
 /**
  * shellby_alias - Builtin command that either prints all aliases, specific
  * aliases, or sets an alias.
+ * @args: An array of arguments.
+ * @front: A double pointer to the beginning of args.
  *
- * @args: array of arguments.
- * @front: double pointer to the beginning of args.
- *
- * Return: (-1) f an error occurs, (0) Otherwise.
+ * Return: If an error occurs - -1.
+ *         Otherwise - 0.
  */
 int shellby_alias(char **args, char __attribute__((__unused__)) **front)
 {
@@ -51,9 +55,8 @@ int shellby_alias(char **args, char __attribute__((__unused__)) **front)
 /**
  * set_alias - Will either set an existing alias 'name' with a new value,
  * 'value' or creates a new alias with 'name' and 'value'.
- *
- * @var_name: Name o alias.
- * @value: Value o alias. 1st character is a '='.
+ * @var_name: Name of the alias.
+ * @value: Value of the alias. First character is a '='.
  */
 void set_alias(char *var_name, char *value)
 {
@@ -89,8 +92,7 @@ void set_alias(char *var_name, char *value)
 
 /**
  * print_alias - Prints the alias in the format name='value'.
- *
- * @alias: Pointer 2 alias.
+ * @alias: Pointer to an alias.
  */
 void print_alias(alias_t *alias)
 {
@@ -113,10 +115,9 @@ void print_alias(alias_t *alias)
 /**
  * get_builtin - Matches a command with a corresponding
  *               shellby builtin function.
+ * @command: The command to match.
  *
- * @command: command 2 match.
- *
- * Return:  function pointer 2 corresponding builtin.
+ * Return: A function pointer to the corresponding builtin.
  */
 int (*get_builtin(char *command))(char **args, char **front)
 {
@@ -130,25 +131,24 @@ int (*get_builtin(char *command))(char **args, char **front)
 		{ "help", shellby_help },
 		{ NULL, NULL }
 	};
-	int lil;
+	int i;
 
-	for (lil = 0; funcs[lil].name; lil++)
+	for (i = 0; funcs[i].name; i++)
 	{
-		if (_strcmp(funcs[lil].name, command) == 0)
+		if (_strcmp(funcs[i].name, command) == 0)
 			break;
 	}
-	return (funcs[lil].f);
+	return (funcs[i].f);
 }
 
 /**
  * shellby_exit - Causes normal process termination
  *                for the shellby shell.
+ * @args: An array of arguments containing the exit value.
+ * @front: A double pointer to the beginning of args.
  *
- * @args:  array o arguments containing the exit value.
- * @front: double pointer 2 beginning of args.
- *
- * Return: f there are no arguments - -3.
- *         f the given exit value is invalid - 2.
+ * Return: If there are no arguments - -3.
+ *         If the given exit value is invalid - 2.
  *         O/w - exits with the given status value.
  *
  * Description: Upon returning -3, the program exits back in the main function.
